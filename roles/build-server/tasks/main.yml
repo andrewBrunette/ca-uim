@@ -37,10 +37,10 @@
   with_flattened:
     - uim.servers
 
-- name: Deploy SSH Key to New Servers
-  shell: "echo '{{ public_key }}'|sshpass -p '{{ serverpass.stdout }}' ssh root@{{ item.ipaddress }} 'mkdir ~/.ssh && cat >> ~/.ssh/authorized_keys'"
-  with_flattened:
-    - uim.servers
+#- name: Deploy SSH Key to New Servers
+#  shell: "echo '{{ public_key }}'|sshpass -p '{{ serverpass.stdout }}' ssh root@{{ item.ipaddress }} 'mkdir ~/.ssh && cat >> ~/.ssh/authorized_keys'"
+#  with_flattened:
+#    - uim.servers
 
 - name: Add New Servers to an in-memory Group
   add_host:
