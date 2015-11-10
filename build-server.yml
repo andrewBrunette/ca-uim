@@ -1,7 +1,7 @@
 ---
 
 - name: Build servers
-  hosts: localhost
+  hosts: all
   connection: local
   roles:
     - build-server
