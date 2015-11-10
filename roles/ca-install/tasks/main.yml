@@ -1,0 +1,13 @@
+---
+
+- name: Copy install script
+  template:
+    src: install.sh.j2
+    dest: /uim/install.sh
+    mode: 755
+  register: uim_install
+
+- name: Execute script
+  shell: /uim/install.sh
+  args:
+  #when: uim_install
