@@ -28,11 +28,6 @@
     additional_disks: "{{ disk }}"
   register: uim
 
-- name: Wait for SSH to Come up on New Servers
-  wait_for: host={{ item.ipaddress }} port=22 delay=5 timeout=320 state=started
-  with_flattened:
-    - uim.servers
-
 - name: Add New Servers to an in-memory Group
   add_host:
     name={{ item.name }}
@@ -41,3 +36,6 @@
     ansible_ssh_pass={{ serverpass.stdout }}
     groupname=UIM
   with_items: uim.servers
+
+- name: Sleep 30 seconds
+  command: sleep 30
