@@ -20,6 +20,7 @@
     exact_count: "{{ server_count }}"
     group: "{{ group_name }}"
     count_group: "{{ group_name }}"
+    network_id: "{{ network_id }}"
     cpu: "{{ cpu }}"
     memory: "{{ memory }}"
     type: "{{ type }}"
@@ -31,16 +32,6 @@
   wait_for: host={{ item.ipaddress }} port=22 delay=5 timeout=320 state=started
   with_flattened:
     - uim.servers
-
-- name: Update known_hosts With New Servers
-  shell: "ssh-keygen -R {{ item.ipaddress }} && ssh-keyscan -t rsa -H {{ item.ipaddress }} >> ~/.ssh/known_hosts"
-  with_flattened:
-    - uim.servers
-
-#- name: Deploy SSH Key to New Servers
-#  shell: "echo '{{ public_key }}'|sshpass -p '{{ serverpass.stdout }}' ssh root@{{ item.ipaddress }} 'mkdir ~/.ssh && cat >> ~/.ssh/authorized_keys'"
-#  with_flattened:
-#    - uim.servers
 
 - name: Add New Servers to an in-memory Group
   add_host:

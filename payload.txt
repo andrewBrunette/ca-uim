@@ -1,0 +1,34 @@
+CHANGE:
+accountAlias = alias of the account the server is being built
+Description = optional...put something witty
+Callbacks = optional - a place to send the output messages from the build
+Repository = where you're playbook is. If it's secure add
+"credentials": {
+    "password"
+}
+
+
+
+
+{
+        "accountAlias": "wfts",
+        "description": "Create CA UIM 5",
+        "callbacks": [
+       {
+         "level": "DEBUG",
+         "url": "http://ad5eb821.proxy.webhookapp.com"
+       }
+  ],
+        "repository": {
+               "url": "https://github.com/jufkes/ca-uim.git",
+               "branch": "master",
+               "defaultPlaybook": "ca-uim-linux.yml"
+        },
+        "hosts": [
+                {
+                         "hostvars": {"ansible_connection": "ssh", "ansible_ssh_user": "root", "ansible_ssh_password": "Pa$$wo3d"},
+                         "id": "10.140.183.12"
+                }
+        ],
+       "properties":{"datacenter": "UC1", "eco_passwd": "QWzxPOmn0987!@#$", "domain": "t3n", "username": "svc_ecosys", "filesystem_path": "172.17.1.23/Software/Ecosystem_Images"}
+}
