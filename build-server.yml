@@ -2,6 +2,5 @@
 
 - name: Build servers
   hosts: all
-  connection: local
   roles:
     - build-server
