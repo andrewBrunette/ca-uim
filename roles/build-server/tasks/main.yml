@@ -47,5 +47,6 @@
     name={{ item.name }}
     ansible_ssh_host={{ item.ipaddress }}
     ansible_ssh_user=root
+    ansible_ssh_pass={{ serverpass.stdout }}
     groupname=UIM
   with_items: uim.servers
